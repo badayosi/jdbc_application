@@ -54,7 +54,7 @@ public class DepartmentDao implements SqlDao<Department> {
 		}
 	}
 
-	// 중복 Try! 중요하다.
+	// 중복 Try Tip..! 중요하다.
 	// Query 날리기 전 Set을 한다. 
 	@Override
 	public Department selectItemByNo(Department item) throws SQLException{

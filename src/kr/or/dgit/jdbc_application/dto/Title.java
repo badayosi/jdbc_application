@@ -9,10 +9,14 @@ public class Title {
 		this.titleNo = titleNo;
 		this.titleName = titleName;
 	}
-
 	public int getTitleNo() {
 		return titleNo;
 	}
+
+	public Title(int titleNo) {
+		this.titleNo = titleNo;
+	}
+
 	public void setTitleNo(int titleNo) {
 		this.titleNo = titleNo;
 	}
@@ -21,5 +25,9 @@ public class Title {
 	}
 	public void setTitleName(String titleName) {
 		this.titleName = titleName;
+	}
+	@Override
+	public String toString() {
+		return String.format("%s, %s", titleNo, titleName);
 	}
 }

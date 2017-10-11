@@ -1,3 +1,5 @@
 select * from department;
+select * from title;
+select * from employee;
 
-delete from department where deptno = 4;
+delete from employee where empno = 9999;
