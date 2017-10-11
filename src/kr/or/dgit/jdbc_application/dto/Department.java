@@ -5,12 +5,17 @@ public class Department {
 	private String deptName;
 	private int floor;
 
-	public Department() {}
+	public Department() {
+	}
 
 	public Department(int deptNo, String deptName, int floor) {
 		this.deptNo = deptNo;
 		this.deptName = deptName;
 		this.floor = floor;
+	}
+
+	public Department(int deptNo) {
+		this.deptNo = deptNo;
 	}
 
 	public int getDeptNo() {
@@ -35,6 +40,11 @@ public class Department {
 
 	public void setFloor(int floor) {
 		this.floor = floor;
+	}
+
+	@Override
+	public String toString() {
+		return String.format("%s, %s, %s", deptNo, deptName, floor);
 	}
 
 }
