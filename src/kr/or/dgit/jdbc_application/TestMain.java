@@ -1,11 +1,21 @@
 package kr.or.dgit.jdbc_application;
 
+import java.awt.BorderLayout;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.util.List;
 
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPanel;
+import javax.swing.WindowConstants;
 
+import kr.or.dgit.jdbc_application.common.TextFieldComponent;
+import kr.or.dgit.jdbc_application.content.DepartmentContent;
+import kr.or.dgit.jdbc_application.content.TitleContent;
 import kr.or.dgit.jdbc_application.dao.DepartmentDao;
 import kr.or.dgit.jdbc_application.dao.EmployeeDao;
 import kr.or.dgit.jdbc_application.dao.TitleDao;
@@ -22,6 +32,83 @@ public class TestMain {
 		//testDepartmentDao();
 		//testTitleDao();
 		//testEmployeeDao();
+		
+		//testTextFieldComponent();
+		//testDepartmentComponent();
+		//testTitleComponent();
+		
+		
+	}
+
+	private static void testTitleComponent() {
+		TitleContent tfc = new TitleContent();
+		tfc.setContent(new Title(10,"이사"));
+
+		
+		JButton btn = new JButton("확인");
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					Title title = tfc.getContent();
+					JOptionPane.showMessageDialog(null, title);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}				
+			}
+		});
+		
+		testContent(tfc, btn);
+	}
+
+	private static void testDepartmentComponent() {
+		DepartmentContent tfc = new DepartmentContent();
+		tfc.setContent(new Department(1, "개발", 10));
+		
+		JButton btn = new JButton("확인");
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					Department dept = tfc.getContent();
+					JOptionPane.showMessageDialog(null, dept);
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}				
+			}
+		});
+		
+		testContent(tfc, btn);
+	}
+
+	private static void testTextFieldComponent() {
+		TextFieldComponent tfc = new TextFieldComponent("테스트");
+		
+		JButton btn = new JButton("확인");
+		btn.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				try {
+					tfc.isEmptyCheck();
+					JOptionPane.showMessageDialog(null, tfc.getTextField());
+				} catch (Exception e1) {
+					JOptionPane.showMessageDialog(null, e1.getMessage());
+				}				
+			}
+		});
+		
+		testContent(tfc, btn);
+	}
+
+	private static void testContent(JPanel panel, JButton btn) {
+		JFrame jf = new JFrame();
+		jf.setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
+		jf.setBounds(10, 10, 200, 150);
+		jf.add(panel);
+		jf.add(btn, BorderLayout.SOUTH);
+		jf.setVisible(true);
 	}
 
 	private static void testEmployeeDao() {
@@ -53,7 +140,6 @@ public class TestMain {
 				System.out.println(e);
 			}
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 	}
