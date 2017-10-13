@@ -1,4 +1,4 @@
-package kr.or.dgit.jdbc_application.jdbc;
+package kr.or.dgit.jdbc_application_teacher.jdbc;
 
 import java.io.IOException;
 import java.io.OutputStreamWriter;
@@ -7,9 +7,9 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class jdbcUtil {
+public class JdbcUtil {
 	public static void close(Connection con){
-		if(con != null){
+		if (con != null){
 			try {
 				con.close();
 			} catch (SQLException e) {
@@ -19,7 +19,7 @@ public class jdbcUtil {
 	}
 
 	public static void close(PreparedStatement pstmt) {
-		if(pstmt != null){
+		if (pstmt != null){
 			try {
 				pstmt.close();
 			} catch (SQLException e) {
@@ -29,22 +29,22 @@ public class jdbcUtil {
 	}
 
 	public static void close(ResultSet rs) {
-		if(rs != null){
+		if (rs != null){
 			try {
 				rs.close();
 			} catch (SQLException e) {
 				e.printStackTrace();
 			}
-		}
+		}		
 	}
 
-	public static void close(OutputStreamWriter dos) {
-		if(dos != null){
+	public static void close(OutputStreamWriter dos){
+		if (dos != null){
 			try {
 				dos.close();
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
-		}
+		}		
 	}
 }

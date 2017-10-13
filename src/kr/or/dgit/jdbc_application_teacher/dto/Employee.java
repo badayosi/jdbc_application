@@ -1,4 +1,4 @@
-package kr.or.dgit.jdbc_application.dto;
+package kr.or.dgit.jdbc_application_teacher.dto;
 
 public class Employee {
 	private int empNo;
@@ -9,7 +9,11 @@ public class Employee {
 	private Department dno;
 
 	public Employee() {
-		
+		// TODO Auto-generated constructor stub
+	}
+
+	public Employee(int empNo) {
+		this.empNo = empNo;
 	}
 
 	public Employee(int empNo, String empName, Title title, Employee manager, int salary, Department dno) {
@@ -19,10 +23,6 @@ public class Employee {
 		this.manager = manager;
 		this.salary = salary;
 		this.dno = dno;
-	}
-	
-	public Employee(int empNo) {
-		this.empNo = empNo;
 	}
 
 	public int getEmpNo() {
@@ -75,6 +75,7 @@ public class Employee {
 
 	@Override
 	public String toString() {
-		return String.format("%s, %s, %s, %s, %s, %s", empNo, empName, title.getTitleName(), manager.getEmpName(), salary, dno.getDeptName());
+		return String.format("%s(%s)", empName, empNo);
 	}
+
 }
