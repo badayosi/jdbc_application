@@ -24,7 +24,7 @@ public class ViewTitle extends AbstractView {
 
 	@SuppressWarnings("unchecked")
 	@Override
-	protected AbstractContent<Tistle> createContent() {
+	protected AbstractContent<Title> createContent() {
 		pContent = new TitleContent();
 		return (AbstractContent<Title>) pContent;
 	}
