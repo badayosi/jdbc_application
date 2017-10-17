@@ -1,5 +1,7 @@
 package kr.or.dgit.jdbc_application_teacher.view;
 
+import javax.swing.JOptionPane;
+
 import kr.or.dgit.jdbc_application_teacher.content.AbstractContent;
 import kr.or.dgit.jdbc_application_teacher.content.TitleContent;
 import kr.or.dgit.jdbc_application_teacher.dto.Title;
@@ -35,7 +37,22 @@ public class ViewTitle extends AbstractView {
 	}
 
 	@Override
-	protected void InsertContent(Object content) {
-		service.insertTitle((Title)content);	
+	protected void insertContent(Object content) {
+		service.insertTitle((Title)content);
+	}
+
+	@Override
+	protected void deleteContent(Object content) {
+		service.deleteTitle((Title)content);
+	}
+
+	@Override
+	protected void updateContent(Object content) {
+		service.updateTitle((Title)content);
+	}
+
+	@Override
+	protected Object messageBox() {
+		return service.selectTitleByNo(new Title(Integer.valueOf(JOptionPane.showInputDialog("찾으실 직책번호를 입력하세요"))));
 	}
 }

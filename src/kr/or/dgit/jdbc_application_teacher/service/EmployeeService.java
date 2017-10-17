@@ -115,4 +115,14 @@ public class EmployeeService {
 		}
 		return null;
 	}
+
+
+	public List<Employee> selectEmployeeByAllFromDno(int deptNo) {
+		try {
+			return ((EmployeeDao)empDao).selectEmployeeByAllFromDno(deptNo);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return null;
+	}
 }

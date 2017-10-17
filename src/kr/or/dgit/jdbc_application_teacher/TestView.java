@@ -17,7 +17,7 @@ public class TestView {
 				try {
 					AbstractView frame1 = new ViewTitle("직책관리");
 					frame1.setVisible(true);
-				
+					
 					AbstractView frame2 = new ViewDepartment("부서관리");
 					frame2.setVisible(true);
 					

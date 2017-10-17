@@ -19,7 +19,7 @@ public class TitleService {
 	public void insertTitle(Title title){
 		try {
 			titleDao.insertItem(title);
-			showMessage("추가 완료");	
+			showMessage("추가 완료");
 		} catch (SQLException e) {
 			e.printStackTrace();
 			showMessage(e.getMessage());
@@ -27,7 +27,7 @@ public class TitleService {
 	}
 	
 	private void showMessage(String msg) {
-		JOptionPane.showMessageDialog(null, msg);		
+		JOptionPane.showMessageDialog(null, msg);
 	}
 	
 	public void updateTitle(Title title){

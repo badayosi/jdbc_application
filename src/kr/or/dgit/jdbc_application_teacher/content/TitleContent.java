@@ -2,8 +2,6 @@ package kr.or.dgit.jdbc_application_teacher.content;
 
 import java.awt.GridLayout;
 
-import javax.swing.JPanel;
-
 import kr.or.dgit.jdbc_application_teacher.common.TextFieldComponent;
 import kr.or.dgit.jdbc_application_teacher.dto.Title;
 
@@ -46,6 +44,21 @@ public class TitleContent extends AbstractContent<Title> {
 	public void clear(){
 		pTitleNo.setTextValue("");
 		pTitleName.setTextValue("");
+		pTitleNo.setEnable(true);
+		pTitleName.setEnable(true);
+	}
+
+	@Override
+	public void changeContent(Object content, String order) {
+		if(order.equals("수정")){
+			setContent((Title)content);
+			pTitleNo.setEnable(false);
+		}
+		if(order.equals("검색")){
+			setContent((Title)content);
+			pTitleNo.setEnable(false);
+			pTitleName.setEnable(false);
+		}
 	}
 }
 

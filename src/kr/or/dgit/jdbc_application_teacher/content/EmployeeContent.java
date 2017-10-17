@@ -1,6 +1,8 @@
 package kr.or.dgit.jdbc_application_teacher.content;
 
 import java.awt.GridLayout;
+import java.awt.event.ItemEvent;
+import java.awt.event.ItemListener;
 import java.util.List;
 import java.util.Vector;
 
@@ -35,6 +37,15 @@ public class EmployeeContent extends AbstractContent<Employee> {
 		add(pEmpName);
 		
 		pDno = new ComboComponent<>("부서");
+		pDno.getCombo().addItemListener(new ItemListener() {
+			@Override
+			public void itemStateChanged(ItemEvent e) {
+				if (e.getStateChange()==ItemEvent.SELECTED){
+					setManagerModel();
+				}
+				
+			}
+		});
 		add(pDno);
 		
 		pManager = new ComboComponent<>("관리자");
@@ -53,7 +64,9 @@ public class EmployeeContent extends AbstractContent<Employee> {
 	}
 
 	private void setManagerModel() {
-		List<Employee> lists = service.selectEmployeeByAll();
+		Department selectDno = pDno.getSelectedItem();
+		
+		List<Employee> lists = service.selectEmployeeByAllFromDno(selectDno.getDeptNo());
 		Employee ceo = new Employee(4377);
 		if (!lists.contains(ceo)){
 			lists.add(service.selectEmployeeByNo(new Employee(4377)));
@@ -79,7 +92,7 @@ public class EmployeeContent extends AbstractContent<Employee> {
 		int empNo = Integer.parseInt(pEmpNo.getTextValue());
 		String empName = pEmpName.getTextValue();
 		Title title = pTitle.getSelectedItem();
-		Employee manager = new Employee(empNo);
+		Employee manager = pManager.getSelectedItem();
 		int salary = pSalary.getSpinValue();
 		Department dno = pDno.getSelectedItem();
 		return new Employee(empNo, empName, title, manager, salary, dno);
@@ -112,6 +125,32 @@ public class EmployeeContent extends AbstractContent<Employee> {
 		pDno.setSelectedIndex(0);
 		pManager.setSelectedIndex(0);
 		pSalary.setSpinValue(1500000);
-		pTitle.setSelectedIndex(0);
+		pTitle.setSelectedIndex(0);	
+		
+		pEmpNo.setEnable(true);
+		pEmpName.setEnable(true);
+		pDno.setEnable(true);
+		pManager.setEnable(true);
+		pSalary.setEnable(true);
+		pTitle.setEnable(true);
 	}
+
+	@Override
+	public void changeContent(Object content, String order) {
+		if(order.equals("수정")){
+			setContent((Employee)content);
+			pEmpNo.setEnable(false);
+		}
+		if(order.equals("검색")){
+			setContent((Employee)content);
+			pEmpNo.setEnable(false);
+			pEmpName.setEnable(false);
+			pDno.setEnable(false);
+			pManager.setEnable(false);
+			pSalary.setEnable(false);
+			pTitle.setEnable(false);
+		}
+	}
+
+	
 }

@@ -51,7 +51,24 @@ public class DepartmentContent extends AbstractContent<Department> {
 	public void clear() {
 		pDeptNo.setTextValue("");
 		pDeptName.setTextValue("");
-		pFloor.setTextValue("");		
+		pFloor.setTextValue("");
+		pDeptNo.setEnable(true);
+		pDeptName.setEnable(true);
+		pFloor.setEnable(true);
+	}
+
+	@Override
+	public void changeContent(Object content, String order) {
+		if(order.equals("수정")){
+			setContent((Department)content);
+			pDeptNo.setEnable(false);
+		}
+		if(order.equals("검색")){
+			setContent((Department)content);
+			pDeptNo.setEnable(false);
+			pDeptName.setEnable(false);
+			pFloor.setEnable(false);
+		}
 	}
 }
 
