@@ -1,7 +1,5 @@
 package kr.or.dgit.jdbc_application_teacher.view;
 
-import javax.swing.JPanel;
-
 import kr.or.dgit.jdbc_application_teacher.content.AbstractContent;
 import kr.or.dgit.jdbc_application_teacher.content.EmployeeContent;
 import kr.or.dgit.jdbc_application_teacher.dto.Employee;
@@ -24,10 +22,11 @@ public class ViewEmployee extends AbstractView {
 		return pList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected AbstractContent<Employee> createContent() {
-		EmployeeContent pContent = new EmployeeContent(es);
-		return pContent;
+		pContent = new EmployeeContent(es);
+		return (AbstractContent<Employee>) pContent;
 	}
 
 	@Override

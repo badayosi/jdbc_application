@@ -1,9 +1,5 @@
 package kr.or.dgit.jdbc_application_teacher.view;
 
-import java.awt.event.ActionEvent;
-
-import javax.swing.JPanel;
-
 import kr.or.dgit.jdbc_application_teacher.content.AbstractContent;
 import kr.or.dgit.jdbc_application_teacher.content.DepartmentContent;
 import kr.or.dgit.jdbc_application_teacher.dto.Department;
@@ -14,8 +10,7 @@ import kr.or.dgit.jdbc_application_teacher.service.DepartmentService;
 @SuppressWarnings("serial")
 public class ViewDepartment extends AbstractView {
 	private DepartmentService service;
-	private DepartmentContent pContent;
-	
+		
 	public ViewDepartment(String title) {
 		super(title);		
 	}
@@ -27,10 +22,11 @@ public class ViewDepartment extends AbstractView {
 		return pList;
 	}
 
+	@SuppressWarnings("unchecked")
 	@Override
 	protected AbstractContent<Department> createContent() {
 		pContent = new DepartmentContent();
-		return pContent;
+		return (AbstractContent<Department>) pContent;
 	}
 
 	@Override
