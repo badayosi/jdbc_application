@@ -33,4 +33,9 @@ public class ViewTitle extends AbstractView {
 	protected void createService() {
 		service = new TitleService();		
 	}
+
+	@Override
+	protected void InsertContent(Object content) {
+		service.insertTitle((Title)content);	
+	}
 }
