@@ -71,4 +71,7 @@ public class Department {
 		return String.format("%s(%s층)", deptName, floor);
 	}
 
+	public Object[] toArray(){
+		return new Object[]{deptNo, deptName, floor};
+	}
 }

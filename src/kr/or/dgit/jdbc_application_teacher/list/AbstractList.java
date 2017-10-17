@@ -1,6 +1,7 @@
-package kr.or.dgit.jdbc_application.list;
+package kr.or.dgit.jdbc_application_teacher.list;
 
 import java.awt.BorderLayout;
+import java.util.Arrays;
 
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
@@ -15,17 +16,16 @@ public abstract class AbstractList extends JPanel {
 
 	public AbstractList() {
 		setLayout(new BorderLayout(0, 0));
-
+		
 		JScrollPane scrollPane = new JScrollPane();
 		add(scrollPane, BorderLayout.CENTER);
-
+		
 		table = new JTable();
 		scrollPane.setViewportView(table);
-
-		loadData();
+		
 	}
 
-	private void loadData() {
+	public void loadData() {
 		DefaultTableModel model = new DefaultTableModel(getData(), getColumnNames());
 		table.setModel(model);
 		setAlignWidth();
@@ -35,22 +35,28 @@ public abstract class AbstractList extends JPanel {
 
 	protected void setCellWidth(int...width) {
 		TableColumnModel cModel = table.getColumnModel();
-		for(int i=0;i<width.length;i++)
+		System.out.println(Arrays.toString(width));
+		for(int i=0; i<width.length; i++){
 			cModel.getColumn(i).setPreferredWidth(width[i]);
+		}
 	}
 
-	protected void setCellAlign(int align, int...idx) {
+	protected void setAlign(int align, int...idx) {
+		//0번 컬럼을 정렬(Left, Right, Center)
 		DefaultTableCellRenderer dtcr = new DefaultTableCellRenderer();
 		dtcr.setHorizontalAlignment(align);
 		
 		TableColumnModel cModel = table.getColumnModel();
-		for(int i=0;i<idx.length;i++)
+		// idx = [0,2]
+		for(int i=0; i<idx.length;i++){
 			cModel.getColumn(idx[i]).setCellRenderer(dtcr);
+		}
+		
 	}
 
-	protected abstract String[] getColumnNames();
-
 	protected abstract Object[][] getData();
-	
+
+	protected abstract  String[] getColumnNames();
+
 	public abstract Object getSelectedItem();
 }

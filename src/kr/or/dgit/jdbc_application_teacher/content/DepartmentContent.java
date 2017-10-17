@@ -2,13 +2,11 @@ package kr.or.dgit.jdbc_application_teacher.content;
 
 import java.awt.GridLayout;
 
-import javax.swing.JPanel;
-
 import kr.or.dgit.jdbc_application_teacher.common.TextFieldComponent;
 import kr.or.dgit.jdbc_application_teacher.dto.Department;
 
 @SuppressWarnings("serial")
-public class DepartmentContent extends JPanel {
+public class DepartmentContent extends AbstractContent<Department> {
 
 	private TextFieldComponent pDeptNo;
 	private TextFieldComponent pDeptName;
@@ -27,6 +25,7 @@ public class DepartmentContent extends JPanel {
 		add(pFloor);
 	}
 
+	@Override
 	public Department getContent(){
 		int deptNo = Integer.parseInt(pDeptNo.getTextValue());
 		String deptName = pDeptName.getTextValue();
@@ -34,16 +33,25 @@ public class DepartmentContent extends JPanel {
 		return new Department(deptNo, deptName, floor);
 	}
 	
+	@Override
 	public void setContent(Department department){
 		pDeptNo.setTextValue(department.getDeptNo()+"");
 		pDeptName.setTextValue(department.getDeptName());
 		pFloor.setTextValue(department.getFloor()+"");
 	}
 	
+	@Override
 	public void isEmptyCheck() throws Exception {
 		pDeptNo.isEmptyCheck();
 		pDeptName.isEmptyCheck();
 		pFloor.isEmptyCheck();
+	}
+
+	@Override
+	public void clear() {
+		pDeptNo.setTextValue("");
+		pDeptName.setTextValue("");
+		pFloor.setTextValue("");		
 	}
 }
 
